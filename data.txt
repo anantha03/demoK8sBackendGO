@@ -1,0 +1,36 @@
+---
+- name: Install vconnect
+  hosts: wins
+  tasks:
+    - name: make sure target path exists
+      win_file:
+        path: 'C:\hybrinstall\'
+        state: directory
+    - name: Download vconnect
+      win_get_url:
+        url: https://blobstoragehybr.blob.core.windows.net/vconnectci/33312.zip
+        dest: 'C:\hybrinstall\33312.zip'
+    - name: Unzip a bz2 (BZip) file
+      community.windows.win_unzip:
+        src: 'C:\hybrinstall\33312.zip'
+        dest: 'C:\hybrinstall\33312'
+        creates: 'C:\hybrinstall\33312'
+    - name: Download Billing
+      win_get_url:
+        url: https://blobstoragehybr.blob.core.windows.net/vconnectci/BillingInstallers/Billing_2109.1.6.zip
+        dest: 'C:\hybrinstall\Billing_2109.1.6.zip'
+    - name: Unzip a bz2 (BZip) file
+      community.windows.win_unzip:
+        src: 'C:\hybrinstall\Billing_2109.1.6.zip'
+        dest: 'C:\hybrinstall\Billing_2109.1.6'
+        creates: 'C:\hybrinstall\Billing_2109.1.6'
+    - name: Download Hybr
+      win_get_url:
+        url: https://blobstoragehybr.blob.core.windows.net/blobcontainer/20210810.9.zip
+        dest: 'C:\hybrinstall\202110810.9.zip'
+    - name: Unzip a bz2 (BZip) file
+      community.windows.win_unzip:
+        src: 'C:\hybrinstall\202110810.9.zip'
+        dest: 'C:\hybrinstall\202110810.9'
+        creates: 'C:\hybrinstall\202110810.9'        
+   
