@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: ananthademoksbackendgo 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ananthademoksbackendgo
+  template:
+    metadata:
+      labels:
+        app: ananthademoksbackendgo 
+    spec:
+      containers:
+        - name: ananthademoksbackendgo 
+          image: aksacrdemo12.azurecr.io/ananthademoksbackendgo
+          ports:
+          - containerPort: 3000
